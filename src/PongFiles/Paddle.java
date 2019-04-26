@@ -3,6 +3,7 @@ package PongFiles;
 //(c) A+ Computer Science
 //www.apluscompsci.com
 //Name -
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -15,61 +16,38 @@ public class Paddle extends Block {
     public Paddle() {
         super(10, 10);
         speed = 5;
-        setColor(Color.black);
     }
-
-   //add the other Paddle constructors
     public Paddle(int x, int y){
-        super(x,y);
-        speed = 5;
-        setColor(Color.black);
+        setX(x); setY(y); setWidth(10); setHeight(10); speed = 5;
     }
-    
     public Paddle(int x, int y, int s){
-        super(x, y);
-        speed = s;
-        setColor(Color.black);
+        setX(x); setY(y); setWidth(10); setHeight(10); speed = s;
     }
-    
     public Paddle(int x, int y, int w, int h, int s){
-        super(x, y, w, h);
-        speed = s;
-        setColor(Color.black);
+        setX(x); setY(y); setWidth(w); setHeight(h); speed = s;
     }
-    
     public Paddle(int x, int y, int w, int h, Color c, int s){
-        super(x, y, w, h, c);
-        speed = s;
-        
+        setX(x); setY(y); setWidth(w); setHeight(h); speed = s; setColor(c);
     }
-    
+   //add the other Paddle constructors
     public void moveUpAndDraw(Graphics window) {
-
+        this.draw(window, Color.WHITE);
+        setY(getY() - speed);
+        draw(window);
     }
 
     public void moveDownAndDraw(Graphics window) {
-
+        this.draw(window, Color.WHITE);
+        setY(getY() + speed);
+        draw(window);
     }
 
    //add get methods
-    
-       /**
-     * @return the speed
-     */
-    public int getSpeed() {
-        return speed;
-    }
-
-    /**
-     * @param speed the speed to set
-     */
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-    
+   public int getSpeed(){
+       return speed;
+   }
    //add a toString() method
-
-    public String toString(){
-        return getxPos() + " " + getyPos() + " " + getWidth() + " " + getHeight() + " " + getColor() + " " + getSpeed();
-    }
+   public String toString(){
+       return "" + getX() + ", " + getY() + ", " + getWidth() + ", " + getHeight() + ", " + getColor() + " " + speed;
+   }
 }
