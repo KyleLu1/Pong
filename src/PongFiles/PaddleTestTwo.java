@@ -3,6 +3,7 @@ package PongFiles;
 //(c) A+ Computer Science
 //www.apluscompsci.com
 //Name -
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,7 +23,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
     private boolean[] keys;		//keeps track of what keys are pressed
 
     public PaddleTestTwo() {
-        //set up all game variables
+		//set up all game variables
 
         //instantiate a Ball
         ball = new Ball();
@@ -32,9 +33,6 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
         rightPaddle = new Paddle(400, 200, 50, 100, 5);
         keys = new boolean[5];
         keys = new boolean[] {false, false, false, false, false};
-        
-        keys = new boolean[5];
-
         //set up the Canvas
         setBackground(Color.WHITE);
         setVisible(true);
@@ -51,13 +49,13 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
         ball.moveAndDraw(window);
         leftPaddle.draw(window);
         rightPaddle.draw(window);
-
-        if (!(ball.getxSpeed() >= 10 && ball.getxSpeed() <= 550)) {
-            ball.setxSpeed(-ball.getxSpeed());
+        if (!(ball.getX() >= 10 && ball.getX() <= 550)) {
+            ball.setXSpeed(-ball.getXSpeed());
         }
-
-        if (!(ball.getyPos() >= 10 && ball.getyPos() <= 450)) {
-            ball.setySpeed(-ball.getySpeed());
+        
+        
+        if (!(ball.getY() >= 10 && ball.getY() <= 450)) {
+            ball.setYSpeed(-ball.getYSpeed());
         }
 
         if (keys[0] == true) {
@@ -66,13 +64,13 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable {
         }
         if (keys[1] == true) {
             //move left paddle down and draw it on the window
-            leftPaddle.moveUpAndDraw(window);
+            leftPaddle.moveDownAndDraw(window);
         }
         if (keys[2] == true) {
-            rightPaddle.moveDownAndDraw(window);
+            rightPaddle.moveUpAndDraw(window);
         }
         if (keys[3] == true) {
-            rightPaddle.moveUpAndDraw(window);
+            rightPaddle.moveDownAndDraw(window);
         }
     }
 
