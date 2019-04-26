@@ -11,58 +11,44 @@ import java.awt.Canvas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class BallTestTwo extends Canvas implements Runnable
-{
-	private Ball ball;
+class BallTestTwo extends Canvas implements Runnable {
 
-	public BallTestTwo()
-	{
-		setBackground(Color.WHITE);
-		setVisible(true);
+    private Ball ball;
 
-		//instantiate a new Ball
-                                        ball = new Ball(100,100,30,50,Color.BLUE,5,6);
+    public BallTestTwo() {
+        setBackground(Color.WHITE);
+        setVisible(true);
 
-		//test the Ball thoroughly
-		
+        //instantiate a new Ball
+        ball = new Ball();
+        //test the Ball thoroughly
+        //test all constructors
+        new Thread(this).start();
+    }
 
-		//test all constructors
+    public void update(Graphics window) {
+        paint(window);
+    }
 
+    public void paint(Graphics window) {
+        ball.moveAndDraw(window);
 
-		new Thread(this).start();
-	}
-	
-	public void update(Graphics window)
-	{
-		paint(window);
-	}
+        if (!(ball.getX() >= 10 && ball.getX() <= 550)) {
+            ball.setXSpeed(-ball.getXSpeed());
+        }
 
-	public void paint(Graphics window)
-	{
-		ball.moveAndDraw(window);
+        if (!(ball.getY() >= 10 && ball.getY() <= 450)) {
+            ball.setYSpeed(-ball.getYSpeed());
+        }
+    }
 
-		if(!(ball.getxPos()>=10 && ball.getxPos()<=getWidth() - ball.getWidth()))
-		{
-			ball.setxSpeed(-ball.getxSpeed());
-		}
-
-		if(!(ball.getyPos()>=10 && ball.getyPos()<=getHeight() - ball.getHeight()))
-		{
-			ball.setySpeed(-ball.getySpeed());
-		}
-	}
-	
-   public void run()
-   {
-   	try
-   	{
-   		while(true)
-   		{
-   		   Thread.currentThread().sleep(19);
-            repaint();
-         }
-      }catch(Exception e)
-      {
-      }
-  	}	
+    public void run() {
+        try {
+            while (true) {
+                Thread.currentThread().sleep(19);
+                repaint();
+            }
+        } catch (Exception e) {
+        }
+    }
 }
